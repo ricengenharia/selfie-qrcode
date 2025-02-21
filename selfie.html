@@ -1,4 +1,19 @@
-<!DOCTYPE html>
+
+fetch('https://api.twilio.com/2010-04-01/Accounts/SEU_ACCOUNT_SID/Messages.json', {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Basic ' + btoa('SEU_ACCOUNT_SID:SEU_AUTH_TOKEN'),
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+        'To': '+5511999999999', // Número do usuário
+        'From': '+5511888888888', // Número do Twilio
+        'Body': 'Obrigado por tirar uma selfie! 😊'
+    })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(err => console.error('Erro ao enviar SMS:', err));<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
