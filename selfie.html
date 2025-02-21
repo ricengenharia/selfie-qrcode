@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tire uma Selfie</title>
+</head>
+<body>
+    <h1>Smile! 😊</h1>
+    <p>Clique no botão para tirar uma selfie.</p>
+    <video id="video" width="320" height="240" autoplay></video>
+    <br>
+    <button id="snap">Tirar Selfie</button>
+    <canvas id="canvas" width="320" height="240"></canvas>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const snap = document.getElementById('snap');
+        const context = canvas.getContext('2d');
+
+        // Acessa a câmera do usuário
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+            })
+            .catch((err) => {
+                alert("Erro ao acessar a câmera. Por favor, permita o acesso.");
+            });
+
+        // Captura a selfie
+        snap.addEventListener('click', () => {
+            context.drawImage(video, 0, 0, 320, 240);
+            const imageData = canvas.toDataURL('image/png'); // Converte a foto em uma imagem
+
+            // Exibe uma mensagem para o usuário
+            alert('Selfie tirada com sucesso! Você receberá uma mensagem de texto.');
+
+            // Envia a selfie para o servidor (opcional)
+            // Aqui você pode adicionar um código para enviar a foto para um servidor, se quiser.
+        });
+    </script>
+</body>
+</html>
