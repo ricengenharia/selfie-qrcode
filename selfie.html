@@ -1,19 +1,4 @@
-
-fetch('https://api.twilio.com/2010-04-01/Accounts/SEU_ACCOUNT_SID/Messages.json', {
-    method: 'POST',
-    headers: {
-        'Authorization': 'Basic ' + btoa('AC7998286da6a3d17e5779f8013bf6b4b2:8af7bd8fb4685a06caa7c22f01b66320'),
-        'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: new URLSearchParams({
-        'To': '+5511968396887', // Número do usuário
-        'From': '+16+672223014', // Número do Twilio
-        'Body': 'Obrigado por tirar uma selfie! 😊'
-    })
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(err => console.error('Erro ao enviar SMS:', err));<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -50,6 +35,21 @@ fetch('https://api.twilio.com/2010-04-01/Accounts/SEU_ACCOUNT_SID/Messages.json'
 
             // Exibe uma mensagem para o usuário
             alert('Selfie tirada com sucesso! Você receberá uma mensagem de texto.');
+            fetch('https://api.twilio.com/2010-04-01/Accounts/SEU_ACCOUNT_SID/Messages.json', {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Basic ' + btoa('AC7998286da6a3d17e5779f8013bf6b4b2:d39ef124d6126d0ba3db43b13b6af9f5'),
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+        'To': '+5511968396887', // Número do usuário
+        'From': '++16672223014', // Número do Twilio
+        'Body': 'Obrigado por tirar uma selfie! 😊'
+    })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(err => console.error('Erro ao enviar SMS:', err));
 
             // Envia a selfie para o servidor (opcional)
             // Aqui você pode adicionar um código para enviar a foto para um servidor, se quiser.
